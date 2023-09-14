@@ -1,15 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Bookstore</title>
-    <link href="css-reset.css" rel="stylesheet" type="text/css" />
-    <link href="style.css" rel="stylesheet" type="text/css" />
-  </head>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Bookstore</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link href="css-reset.css" rel="stylesheet" type="text/css" />
+        <link href="style.css" rel="stylesheet" type="text/css" />
+    </head>
 
-  <body>
-    Hello world
-    <script src="script.js"></script>
-  </body>
+    <body>
+        <main>
+            <header>
+                <h1>Bookstore</h1>
+                <div class="user-container">
+                    <img src="user-icon.svg" />
+                    <p>John Doe</p>
+                </div>
+            </header>
+            <section>
+                <div class="search-bar">
+                    <input
+                        class="search-input"
+                        placeholder="Search books"
+                        type="text"
+                    />
+                    <button class="add-button">Add Book</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="table-heading">Name</th>
+                            <th class="table-heading">Author</th>
+                            <th class="table-heading">Topic</th>
+                            <th class="table-heading">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+        </main>
+        <script src="script.js" type="module"></script>
+    </body>
 </html>
