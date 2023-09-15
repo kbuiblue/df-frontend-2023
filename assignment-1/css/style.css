@@ -1,7 +1,8 @@
 * {
     --hightlight: #cd485d;
     --pressed: #a63a4b;
-    --border: #d2dae2;
+    --border-color: #99a1a9;
+    --border-radius: 5px;
 }
 
 html {
@@ -11,6 +12,7 @@ html {
 }
 
 body {
+    position: relative;
     max-width: 75%;
     margin: 0 auto;
 }
@@ -60,7 +62,7 @@ header span {
 
 .search-bar > * {
     padding: 0.75em;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     margin-left: 0.5em;
 }
 
@@ -68,16 +70,17 @@ header span {
     outline-color: var(--hightlight);
 }
 
-.add-button {
+.button {
     cursor: pointer;
     user-select: none;
     border: none;
     color: #ffffff;
     background-color: var(--hightlight);
+    font-weight: 500;
     padding: 0.8em 1em;
 }
 
-.add-button:active {
+.button:active {
     scale: 0.9;
     background-color: var(--pressed);
 }
@@ -94,12 +97,12 @@ table {
 .table-heading {
     padding: 1em;
     font-weight: 700;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-color);
 }
 
 td {
     padding: 1.5em 1em;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-color);
 }
 
 td.delete-button {
@@ -114,4 +117,79 @@ td.delete-button {
 td.delete-button:active {
     scale: 0.9;
     color: var(--pressed);
+}
+
+/* Add Book Modal */
+
+.modal {
+    position: absolute;
+    top:25vh;
+    left: 25vw;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    max-width: 22em;
+    padding: 1.75em;
+    background-color: #ffffff;
+    box-shadow: -1px -1px 9px #cccccc;
+}
+
+.modal-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-top h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.modal form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2em 0 1em 0;
+}
+
+form label {
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+form input,
+form select {
+    border: 1px solid var(--border-color);
+    padding: 0.75em;
+    border-radius: var(--border-radius);
+    margin-bottom: 1em;
+    font-family: "Inter", sans-serif;
+    letter-spacing: 0.01em;
+}
+
+form input:focus,
+form select:focus {
+    outline-color: var(--hightlight);
+}
+
+form select {
+    cursor: pointer;
+    /* min-height: ; */
+}
+
+form button {
+    margin-top: 1em;
+}
+
+.modal-top .close-icon {
+    max-width: 5%;
+    cursor: pointer;
+}
+
+.modal button {
+    max-width: 30%;
+    padding: 1em 2em;
+    align-self: flex-end;
+    border-radius: var(--border-radius);
 }

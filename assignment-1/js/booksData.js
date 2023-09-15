@@ -2,19 +2,19 @@ export const booksData = [
     {
         name: "Design Patterns: Elements of Reusable Object-Oriented Software",
         author: "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides, Grady Booch (Foreword)",
-        topic: "Design patterns, software engineering, object-oriented programming",
+        topic: "Design patterns",
         isDeleted: false,
     },
     {
         name: "The Pragmatic Programmer: From Journeyman to Master",
         author: "Andrew Hunt, David Thomas",
-        topic: "Education, computer programming",
+        topic: "Computer programming",
         isDeleted: false,
     },
     {
         name: "Clean Code: A Handbook of Agile Software Craftsmanship",
         author: "Robert Cecil Martin",
-        topic: "Software design, software architechture",
+        topic: "Software design",
         isDeleted: false,
     },
     {
