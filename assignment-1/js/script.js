@@ -1,8 +1,9 @@
 import { booksData } from "./booksData";
 
 const mainElement = document.querySelector("main");
+const searchInput = document.querySelector(".search-input");
 
-let bookToDeleteId;
+let searchTimeout;
 
 mainElement.addEventListener("click", (event) => {
     if (event.target.id === "add-button") {
@@ -10,6 +11,8 @@ mainElement.addEventListener("click", (event) => {
         renderTopicSelect();
     } else if (event.target.className === "delete-button") {
         renderDeleteBookModal(event.target);
+    } else if (event.target.className === "search-input") {
+        searchTimeout = setTimeout(handleSearch, 500);
     }
     attachEventListeners(event.target);
 });
@@ -26,13 +29,13 @@ function renderBooks() {
 
     document.querySelector("tbody").innerHTML = "";
 
-    books.forEach((book, index) => {
+    books.forEach((book) => {
         const newRow = document.createElement("tr");
         newRow.innerHTML = `
             <td>${book.name}</td>
             <td>${book.author}</td>
             <td>${book.topic}</td>
-            <td class="delete-button" data-id="${index}">Delete</td>
+            <td class="delete-button" data-id="${book.bookId}">Delete</td>
         `;
 
         document.querySelector("tbody").appendChild(newRow);
@@ -57,7 +60,7 @@ function renderAddBookModal() {
     modal.className = "modal";
     modal.innerHTML = `
         <div class="modal-top">
-            <h2>Add Book</h2>
+            <h2><span>Add</span> Book</h2>
             <img class="close-icon" src="/close-icon.svg">
         </div>
         <form>
@@ -72,7 +75,7 @@ function renderAddBookModal() {
         </form>    
     `;
     document.querySelector("body").appendChild(modal);
-    mainElement.style.opacity = "0.8";
+    mainElement.style.opacity = "0.4";
     mainElement.style.filter = "blur(5px)";
     mainElement.classList.add("disabled");
     document.body.style.cursor = "default";
@@ -80,10 +83,9 @@ function renderAddBookModal() {
 
 function renderDeleteBookModal(target) {
     const booksArray = JSON.parse(localStorage.getItem("books"));
-    const deletedBook = booksArray.find((book, index) => {
-        bookToDeleteId = parseInt(target.dataset.id);
 
-        if (index === bookToDeleteId) {
+    const deletedBook = booksArray.find((book) => {
+        if (book.bookId === parseInt(target.dataset.id)) {
             return book;
         }
     });
@@ -92,7 +94,7 @@ function renderDeleteBookModal(target) {
     modal.className = "modal modal__delete";
     modal.innerHTML = `
         <div class="modal-top">
-            <h2>Delete Book</h2>
+            <h2><span>Delete</span> Book</h2>
             <img class="close-icon" src="/close-icon.svg">
         </div>
         <h3>Do you want to delete <br><strong>${deletedBook.name}?</strong></h3>
@@ -102,19 +104,54 @@ function renderDeleteBookModal(target) {
         </div>   
     `;
     document.querySelector("body").appendChild(modal);
-    mainElement.style.opacity = "0.8";
+    mainElement.style.opacity = "0.4";
     mainElement.style.filter = "blur(5px)";
     mainElement.classList.add("disabled");
     document.body.style.cursor = "default";
 }
 
-function handleDeleteBook() {
+function handleSearch() {
     const booksArray = JSON.parse(localStorage.getItem("books"));
+
+    clearTimeout(searchTimeout);
+
+    searchTimeout = setTimeout(() => {
+        searchInput.addEventListener("input", () => {
+            const searchedBook = booksArray.filter((book) => {
+                const bookName = book.name.toLowerCase().trim();
+                const searchTerm = searchInput.value.toLowerCase().trim();
+
+                if (bookName.includes(searchTerm)) {
+                    return book;
+                }
+            });
+
+            document.querySelector("tbody").innerHTML = "";
+
+            searchedBook.forEach((book) => {
+                const newRow = document.createElement("tr");
+                newRow.innerHTML = `
+                    <td>${book.name}</td>
+                    <td>${book.author}</td>
+                    <td>${book.topic}</td>
+                    <td class="delete-button" data-id="${book.bookId}">Delete</td>
+                `;
+
+                document.querySelector("tbody").appendChild(newRow);
+            });
+        });
+    });
+}
+
+function handleDeleteBook(target) {
+    const booksArray = JSON.parse(localStorage.getItem("books"));
+
     const remainingBooks = booksArray.filter(
-        (book, index) => index !== bookToDeleteId
+        (book) => book.bookId !== parseInt(target.dataset.id)
     );
     localStorage.setItem("books", JSON.stringify(remainingBooks));
     handleModalClose();
+    searchInput.value = "";
     renderBooks();
 }
 
@@ -132,15 +169,16 @@ function handleSubmitForm(event) {
     const name = modalElement.querySelector("#name");
     const author = modalElement.querySelector("#author");
     const topic = modalElement.querySelector("#topic");
+    const booksArray = JSON.parse(localStorage.getItem("books"));
 
     const newBook = {
+        bookId: Math.floor(Math.random() * 300 + booksArray.length),
         name: name.value,
         author: author.value,
         topic: topic.value,
     };
 
-    const booksArray = JSON.parse(localStorage.getItem("books"));
-    booksArray.unshift(newBook);
+    booksArray.push(newBook);
     localStorage.setItem("books", JSON.stringify(booksArray));
     handleModalClose();
     renderBooks();
@@ -160,7 +198,7 @@ function attachEventListeners(target) {
     } else if (target.className === "delete-button") {
         document
             .querySelector(".modal__delete .secondary-button")
-            .addEventListener("click", handleDeleteBook);
+            .addEventListener("click", () => handleDeleteBook(target));
         document
             .querySelector(".modal__delete .button")
             .addEventListener("click", handleModalClose);
