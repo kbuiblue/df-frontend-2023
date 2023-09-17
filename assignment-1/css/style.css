@@ -19,7 +19,7 @@ body {
 
 main {
     padding-top: 5%;
-    min-height: 100vh;
+    min-height: 85vh;
 }
 
 header {
@@ -43,6 +43,16 @@ header span {
     color: var(--hightlight);
 }
 
+a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 500;
+}
+
+a:hover {
+    color: var(--hightlight);
+}
+
 .user-container {
     display: flex;
     justify-content: center;
@@ -50,11 +60,12 @@ header span {
     min-width: 9em;
     padding: 1em;
     padding-right: 0;
-    gap: 1em;
+    gap: 0.75em;
 }
 
 .user-container img {
     max-width: 2.5em;
+    border-radius: 50px;
 }
 
 .search-bar {
@@ -180,7 +191,6 @@ form select:focus {
 
 form select {
     cursor: pointer;
-    /* min-height: ; */
 }
 
 form button {
@@ -225,4 +235,30 @@ form button {
     border: none;
     background: none;
     cursor: pointer;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+    padding-bottom: 3em;
+    min-width: 40vw;
+    height: 10%;
+}
+
+footer img {
+    max-width: 1.25em;
+    margin: 0 0.25em;
+    fill: var(--hightlight);
+}
+
+.copyright {
+    display: flex;
+    align-items: center;
+    max-width: fit-content;
+}
+
+.copyright a {
+    font-weight: 400;
+    margin-left: 0.5em;
 }
