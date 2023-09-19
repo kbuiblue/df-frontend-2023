@@ -103,17 +103,17 @@ function setCurrentPage(pageNum, books) {
     renderBooks(bookRange);
 }
 
-function initialPagination() {
-    const booksArray = JSON.parse(localStorage.getItem("books"));
+function initialRender() {
+    let booksArray = JSON.parse(localStorage.getItem("books"));
 
     // only save mock data to localStorage on first render
     if (!booksArray) {
         localStorage.setItem("books", JSON.stringify(booksData));
-    } else {
-        const pageCount = Math.ceil(booksArray.length / paginationLimit);
-        getPaginationNumbers(currentPage, pageCount);
-        setCurrentPage(currentPage, booksArray);
+        booksArray = JSON.parse(localStorage.getItem("books"));
     }
+    const pageCount = Math.ceil(booksArray.length / paginationLimit);
+    getPaginationNumbers(currentPage, pageCount);
+    setCurrentPage(currentPage, booksArray);
 
     prevButton.addEventListener("click", () => {
         const updatedBooksArray = JSON.parse(localStorage.getItem("books"));
@@ -342,4 +342,4 @@ function attachEventListeners(target) {
     }
 }
 
-initialPagination();
+initialRender();
