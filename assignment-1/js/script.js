@@ -1,9 +1,18 @@
 import { booksData } from "./booksData";
 
 const mainElement = document.querySelector("main");
+const tableBody = document.querySelector("tbody");
 const searchInput = document.querySelector(".search-input");
+const paginationContainer = document.querySelector(".pagination-container");
+const paginationNumbers = document.getElementById("pagination-numbers");
+const footer = document.querySelector("footer");
+const nextButton = document.getElementById("next-button");
+const prevButton = document.getElementById("prev-button");
+
+const paginationLimit = 5;
 
 let searchTimeout;
+let currentPage = 1;
 
 mainElement.addEventListener("click", (event) => {
     if (event.target.id === "add-button") {
@@ -17,17 +26,113 @@ mainElement.addEventListener("click", (event) => {
     attachEventListeners(event.target);
 });
 
-function renderBooks() {
-    const booksExist = localStorage.getItem("books");
+function getPaginationNumbers(currentPage, pageCount) {
+    for (let i = currentPage; i <= pageCount; i++) {
+        renderPageNumber(i);
+    }
+}
+
+function renderPageNumber(index) {
+    const pageNumber = document.createElement("button");
+    pageNumber.className = "pagination-number";
+    pageNumber.innerHTML = index;
+    pageNumber.setAttribute("page-index", index);
+    paginationNumbers.appendChild(pageNumber);
+}
+
+function renderActivePageNumber() {
+    document.querySelectorAll(".pagination-number").forEach((button) => {
+        button.classList.remove("active");
+
+        const pageIndex = Number(button.getAttribute("page-index"));
+        if (pageIndex == currentPage) {
+            button.classList.add("active");
+        }
+    });
+}
+
+function renderPageButtonsStatus() {
+    const booksArray = JSON.parse(localStorage.getItem("books"));
+    const pageCount = Math.ceil(booksArray.length / paginationLimit);
+
+    const disableButton = (button) => {
+        button.classList.add("disabled");
+        button.setAttribute("disabled", true);
+    };
+    const enableButton = (button) => {
+        button.classList.remove("disabled");
+        button.removeAttribute("disabled");
+    };
+
+    if (currentPage === 1) {
+        disableButton(prevButton);
+    } else {
+        enableButton(prevButton);
+    }
+    if (pageCount === currentPage) {
+        disableButton(nextButton);
+    } else {
+        enableButton(nextButton);
+    }
+}
+
+function handlePageButtons() {
+    document.querySelectorAll(".pagination-number").forEach((button) => {
+        const pageIndex = Number(button.getAttribute("page-index"));
+        if (pageIndex) {
+            button.addEventListener("click", () => {
+                const updatedBooksArray = JSON.parse(
+                    localStorage.getItem("books")
+                );
+                setCurrentPage(pageIndex, updatedBooksArray);
+            });
+        }
+    });
+}
+
+function setCurrentPage(pageNum, books) {
+    currentPage = pageNum;
+
+    renderActivePageNumber();
+    renderPageButtonsStatus();
+
+    const prevRange = (pageNum - 1) * paginationLimit;
+    const currRange = pageNum * paginationLimit;
+    const bookRange = books.slice(prevRange, currRange);
+
+    renderBooks(bookRange);
+}
+
+function initialPagination() {
+    const booksArray = JSON.parse(localStorage.getItem("books"));
 
     // only save mock data to localStorage on first render
-    if (!booksExist) {
+    if (!booksArray) {
         localStorage.setItem("books", JSON.stringify(booksData));
+    } else {
+        const pageCount = Math.ceil(booksArray.length / paginationLimit);
+        getPaginationNumbers(currentPage, pageCount);
+        setCurrentPage(currentPage, booksArray);
     }
 
-    const books = JSON.parse(localStorage.getItem("books"));
+    prevButton.addEventListener("click", () => {
+        const updatedBooksArray = JSON.parse(localStorage.getItem("books"));
+        setCurrentPage(currentPage - 1, updatedBooksArray);
+    });
+    nextButton.addEventListener("click", () => {
+        const updatedBooksArray = JSON.parse(localStorage.getItem("books"));
+        setCurrentPage(currentPage + 1, updatedBooksArray);
+    });
 
-    document.querySelector("tbody").innerHTML = "";
+    handlePageButtons();
+}
+
+function renderBooks(bookRange) {
+    const books = bookRange
+        ? bookRange
+        : JSON.parse(localStorage.getItem("books"));
+
+    tableBody.innerHTML = "";
 
     books.forEach((book) => {
         const newRow = document.createElement("tr");
@@ -38,7 +143,7 @@ function renderBooks() {
             <td class="delete-button" data-id="${book.bookId}">Delete</td>
         `;
 
-        document.querySelector("tbody").appendChild(newRow);
+        tableBody.appendChild(newRow);
     });
 }
 
@@ -53,6 +158,23 @@ function renderTopicSelect() {
 
         document.querySelector("select").appendChild(optionElement);
     });
+}
+
+function renderBlur(modal) {
+    document.body.appendChild(modal);
+    mainElement.style.opacity = "0.4";
+    mainElement.style.filter = "blur(5px)";
+    mainElement.classList.add("disabled");
+
+    paginationContainer.style.opacity = "0.4";
+    paginationContainer.style.filter = "blur(5px)";
+    paginationContainer.classList.add("disabled");
+
+    footer.style.opacity = "0.4";
+    footer.style.filter = "blur(5px)";
+    footer.classList.add("disabled");
+
+    document.body.style.cursor = "default";
 }
 
 function renderAddBookModal() {
@@ -74,11 +196,7 @@ function renderAddBookModal() {
             <button class="button">Create</button>
         </form>    
     `;
-    document.querySelector("body").appendChild(modal);
-    mainElement.style.opacity = "0.4";
-    mainElement.style.filter = "blur(5px)";
-    mainElement.classList.add("disabled");
-    document.body.style.cursor = "default";
+    renderBlur(modal);
 }
 
 function renderDeleteBookModal(target) {
@@ -103,11 +221,7 @@ function renderDeleteBookModal(target) {
             <button class="button">Cancel</button> 
         </div>   
     `;
-    document.querySelector("body").appendChild(modal);
-    mainElement.style.opacity = "0.4";
-    mainElement.style.filter = "blur(5px)";
-    mainElement.classList.add("disabled");
-    document.body.style.cursor = "default";
+    renderBlur(modal);
 }
 
 function handleSearch() {
@@ -125,26 +239,16 @@ function handleSearch() {
                     return book;
                 }
             });
-
-            document.querySelector("tbody").innerHTML = "";
-
-            searchedBook.forEach((book) => {
-                const newRow = document.createElement("tr");
-                newRow.innerHTML = `
-                    <td>${book.name}</td>
-                    <td>${book.author}</td>
-                    <td>${book.topic}</td>
-                    <td class="delete-button" data-id="${book.bookId}">Delete</td>
-                `;
-
-                document.querySelector("tbody").appendChild(newRow);
-            });
+            if (searchedBook) {
+                setCurrentPage(1, searchedBook);
+            }
         });
     });
 }
 
 function handleDeleteBook(target) {
     const booksArray = JSON.parse(localStorage.getItem("books"));
+    const oldPageCount = Math.ceil(booksArray.length / paginationLimit);
 
     const remainingBooks = booksArray.filter(
         (book) => book.bookId !== parseInt(target.dataset.id)
@@ -152,7 +256,24 @@ function handleDeleteBook(target) {
     localStorage.setItem("books", JSON.stringify(remainingBooks));
     handleModalClose();
     searchInput.value = "";
-    renderBooks();
+
+    const updatedBooksArray = JSON.parse(localStorage.getItem("books"));
+    const newPageCount = Math.ceil(updatedBooksArray.length / paginationLimit);
+
+    if (newPageCount < oldPageCount) {
+        const pageNumbers = Array.from(
+            document.querySelectorAll(".pagination-number")
+        );
+        const removedPage = pageNumbers.find((pageNumber) => {
+            const pageIndex = Number(pageNumber.getAttribute("page-index"));
+
+            if (pageIndex === oldPageCount) {
+                return pageNumber;
+            }
+        });
+        paginationNumbers.removeChild(removedPage);
+    }
+    setCurrentPage(newPageCount, updatedBooksArray);
 }
 
 function handleModalClose() {
@@ -160,6 +281,14 @@ function handleModalClose() {
     mainElement.style.opacity = "1";
     mainElement.style.filter = "none";
     mainElement.classList.remove("disabled");
+
+    paginationContainer.style.opacity = "1";
+    paginationContainer.style.filter = "none";
+    paginationContainer.classList.remove("disabled");
+
+    footer.style.opacity = "1";
+    footer.style.filter = "none";
+    footer.classList.remove("disabled");
 }
 
 function handleSubmitForm(event) {
@@ -181,7 +310,15 @@ function handleSubmitForm(event) {
     booksArray.push(newBook);
     localStorage.setItem("books", JSON.stringify(booksArray));
     handleModalClose();
-    renderBooks();
+
+    const updatedBooksArray = JSON.parse(localStorage.getItem("books"));
+    const newPageCount = Math.ceil(updatedBooksArray.length / paginationLimit);
+
+    if (newPageCount > currentPage) {
+        getPaginationNumbers(currentPage + 1, newPageCount);
+        handlePageButtons();
+    }
+    setCurrentPage(currentPage, updatedBooksArray);
 }
 
 function attachEventListeners(target) {
@@ -205,4 +342,4 @@ function attachEventListeners(target) {
     }
 }
 
-renderBooks();
+initialPagination();
