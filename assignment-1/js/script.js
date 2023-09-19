@@ -9,7 +9,7 @@ const footer = document.querySelector("footer");
 const nextButton = document.getElementById("next-button");
 const prevButton = document.getElementById("prev-button");
 
-const paginationLimit = 5;
+const paginationLimit = 4;
 
 let searchTimeout;
 let currentPage = 1;
