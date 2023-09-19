@@ -18,8 +18,8 @@ body {
 }
 
 main {
-    padding-top: 5%;
-    min-height: 85vh;
+    padding-top: 2em;
+    min-height: 80vh;
 }
 
 header {
@@ -237,14 +237,18 @@ form button {
     cursor: pointer;
 }
 
+.pagination-space {
+    min-height: 1em;
+    margin-top: 9em;
+}
+
 /* Pagination */
 
 .pagination-container {
+    margin-top: 1em;
     display: flex;
     align-items: center;
-    position: absolute;
-    right: 0;
-    bottom: 10em;
+    justify-content: center;
     z-index: 1;
 }
 .pagination-number,
@@ -271,7 +275,7 @@ footer {
     display: flex;
     justify-content: center;
     padding: 1em;
-    padding-bottom: 3em;
+    padding-top: 2em;
     min-width: 40vw;
     height: 10%;
 }
