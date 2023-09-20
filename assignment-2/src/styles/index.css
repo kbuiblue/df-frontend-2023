@@ -1,5 +1,16 @@
+@import-normalize;
+
 :root {
-    --highlight: #c84a5f;
+    --hightlight: #cd485d;
+    --pressed: #a63a4b;
+    --border-color: #99a1a9;
+    --border-radius: 5px;
+}
+
+html {
+    font-family: "Inter", sans-serif;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
 }
 
 body {
@@ -9,4 +20,8 @@ body {
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    max-width: 2.5em;
 }

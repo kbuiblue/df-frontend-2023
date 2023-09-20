@@ -1,11 +1,18 @@
 import styles from "../styles/App.module.css"
+import Profile from "./Profile";
+import SearchBar from "./SearchBar";
+import Table from "./Table";
+import Nav from "./Nav";
+import Footer from "./Footer";
 
 function App() {
   return (
     <div className={styles.App}>
-      <header className={styles.Header}>
-          <p className={styles.Link}>Test</p>
-      </header>
+      <Profile />
+      <SearchBar />
+      <Table />
+      <Nav />
+      <Footer />
     </div>
   );
 }
