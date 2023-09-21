@@ -1,10 +1,11 @@
 import React from "react";
+import styles from "../styles/Nav.module.css"
 
 export default function Nav() {
     return (
-        <nav class="pagination-container">
+        <nav className={styles.paginationContainer}>
             <button
-                class="pagination-button"
+                className={styles.paginationButton}
                 id="prev-button"
                 aria-label="Previous page"
                 title="Previous page"
@@ -12,10 +13,10 @@ export default function Nav() {
                 &lt;
             </button>
 
-            <div id="pagination-numbers"></div>
+            <div id={styles.paginationNumber}></div>
 
             <button
-                class="pagination-button"
+                className={styles.paginationButton}
                 id="next-button"
                 aria-label="Next page"
                 title="Next page"

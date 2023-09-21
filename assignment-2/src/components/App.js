@@ -1,20 +1,23 @@
-import styles from "../styles/App.module.css"
-import Profile from "./Profile";
+import styles from "../styles/App.module.css";
+import Header from "./Header";
 import SearchBar from "./SearchBar";
 import Table from "./Table";
 import Nav from "./Nav";
 import Footer from "./Footer";
+import { BooksProvider } from "./BooksProvider";
 
 function App() {
-  return (
-    <div className={styles.App}>
-      <Profile />
-      <SearchBar />
-      <Table />
-      <Nav />
-      <Footer />
-    </div>
-  );
+    return (
+        <div className={styles.App}>
+            <Header />
+            <BooksProvider>
+                <SearchBar />
+                <Table />
+                <Nav />
+            </BooksProvider>
+            <Footer />
+        </div>
+    );
 }
 
 export default App;
