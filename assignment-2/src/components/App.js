@@ -5,17 +5,22 @@ import Table from "./Table";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import { BooksProvider } from "./BooksProvider";
+import { ModalProvider } from "./ModalProvider";
+import Modal from "./Modal";
 
 function App() {
     return (
         <div className={styles.App}>
-            <Header />
-            <BooksProvider>
-                <SearchBar />
-                <Table />
-                <Nav />
-            </BooksProvider>
-            <Footer />
+            <ModalProvider>
+                <Header />
+                <BooksProvider>
+                    <SearchBar />
+                    <Table />
+                    <Nav />
+                    <Modal />
+                </BooksProvider>
+                <Footer />
+            </ModalProvider>
         </div>
     );
 }

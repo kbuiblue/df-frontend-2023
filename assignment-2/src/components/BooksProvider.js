@@ -29,16 +29,15 @@ export const BooksProvider = ({ children }) => {
             topic: "Code refactoring",
         },
     ];
+
     const storedBooks = JSON.parse(localStorage.getItem("books"));
     const [books, setBooks] = useState(
         storedBooks ? storedBooks : defaultBooks
     );
 
     useEffect(() => {
-        if (!storedBooks) {
-            localStorage.setItem("books", JSON.stringify(defaultBooks));
-        }
-    }, []);
+        localStorage.setItem("books", JSON.stringify(books));
+    }, [books, storedBooks]);
 
     const addBook = (book) => {
         setBooks([...books, book]);

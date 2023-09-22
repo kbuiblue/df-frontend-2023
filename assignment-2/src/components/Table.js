@@ -1,16 +1,25 @@
 import React, { useContext } from "react";
 import styles from "../styles/Table.module.css";
-import { BooksContext } from "./context";
+import { BooksContext, ModalContext } from "./context";
+import disableStyles from "../styles/DisableStyles.module.css";
+import DeleteBookButton from "./DeleteBookButton";
 
 export default function Table() {
     const { books } = useContext(BooksContext);
+    const { isOpen } = useContext(ModalContext);
 
     if (!Array.isArray(books)) {
         return <div>No books found</div>;
     }
 
     return (
-        <table>
+        <table
+            className={
+                isOpen
+                    ? `${disableStyles.disabled} ${styles.table}`
+                    : styles.table
+            }
+        >
             <thead>
                 <tr>
                     <th className={styles.tableHeading}>Name</th>
@@ -20,13 +29,13 @@ export default function Table() {
                 </tr>
             </thead>
             <tbody>
-                {books.map((book) => {
+                {books.map((book, index) => {
                     return (
-                        <tr>
+                        <tr key={index}>
                             <td>{book.name}</td>
                             <td>{book.author}</td>
                             <td>{book.topic}</td>
-                            <td className={styles.deleteButton}>Delete</td>
+                            <DeleteBookButton index={index} />
                         </tr>
                     );
                 })}

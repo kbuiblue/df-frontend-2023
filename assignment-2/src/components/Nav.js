@@ -1,9 +1,19 @@
-import React from "react";
-import styles from "../styles/Nav.module.css"
+import React, { useContext } from "react";
+import styles from "../styles/Nav.module.css";
+import disableStyles from "../styles/DisableStyles.module.css";
+import { ModalContext } from "./context";
 
 export default function Nav() {
+    const { isOpen } = useContext(ModalContext);
+
     return (
-        <nav className={styles.paginationContainer}>
+        <nav
+            className={
+                isOpen
+                    ? `${disableStyles.disabled} ${styles.paginationContainer}`
+                    : styles.paginationContainer
+            }
+        >
             <button
                 className={styles.paginationButton}
                 id="prev-button"

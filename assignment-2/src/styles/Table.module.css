@@ -18,17 +18,3 @@ td {
     padding: 1.5em 1em;
     border: 1px solid var(--border-color);
 }
-
-.deleteButton {
-    cursor: pointer;
-    user-select: none;
-    color: var(--hightlight);
-    text-decoration: underline;
-    text-decoration-style: dotted;
-    text-underline-offset: 0.25em;
-}
-
-.deleteButton:active {
-    scale: 0.9;
-    color: var(--pressed);
-}
