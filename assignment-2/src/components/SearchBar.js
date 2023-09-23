@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styles from "../styles/SearchBar.module.css";
 import disableStyles from "../styles/DisableStyles.module.css";
 import { ModalContext } from "./context";
+import AddBookButton from "./AddBookButton";
 
 export default function SearchBar() {
     const { isOpen } = useContext(ModalContext);
@@ -19,9 +20,7 @@ export default function SearchBar() {
                 placeholder="Search books"
                 type="text"
             />
-            <button className={styles.button} id="add-button">
-                Add Book
-            </button>
+            <AddBookButton />
         </div>
     );
 }

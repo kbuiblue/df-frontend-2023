@@ -24,6 +24,16 @@
     font-weight: 700;
 }
 
+h3 {
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.bookTitle {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
 .modalTop span {
     color: var(--hightlight);
 }
@@ -53,6 +63,7 @@
 }
 
 form label {
+    text-align: left;
     margin-bottom: 0.5em;
     font-weight: 600;
 }
@@ -92,6 +103,12 @@ form button {
     border-radius: var(--border-radius);
 }
 
+.defaultValue {
+    font-style: italic;
+    opacity: 0.8;
+    color: var(--border-color);
+}
+
 /* Delete Modal */
 
 .modalDelete {
@@ -105,11 +122,6 @@ form button {
     max-width: 80%;
     margin: 1em auto;
     line-height: 1.3;
-}
-
-.modalDelete strong {
-    font-weight: 700;
-    font-size: 1.1rem;
 }
 
 .modalDelete .secondaryButton {
