@@ -37,11 +37,13 @@ export const BooksProvider = ({ children }) => {
 
     const PAGINATION_LIMIT = 5;
 
-    const getPagination = () => {
+    const getPagination = (booksArray) => {
         const pages = [];
 
-        for (let i = 0; i < books.length; i += PAGINATION_LIMIT) {
-            const page = books.slice(i, i + PAGINATION_LIMIT);
+        const booksArr = booksArray ? booksArray : books;
+
+        for (let i = 0; i < booksArr.length; i += PAGINATION_LIMIT) {
+            const page = booksArr.slice(i, i + PAGINATION_LIMIT);
             pages.push(page);
         }
         return pages;
@@ -58,6 +60,7 @@ export const BooksProvider = ({ children }) => {
     useEffect(() => {
         const newPages = getPagination();
 
+        console.log(newPages);
         setPages(newPages);
         setCurrentPage(newPages[activePageNumber - 1]);
 

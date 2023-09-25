@@ -61,7 +61,7 @@ export default function Modal() {
             ...prevUserInput,
             id: `${randomNumber}${userInput.name}`,
         }));
-    }, [isOpen]);
+    }, [userInput.name, isOpen]);
 
     useEffect(() => {
         setUserInput({
