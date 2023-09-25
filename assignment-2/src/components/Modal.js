@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "../styles/Modal.module.css";
 import { BooksContext, ModalContext } from "./context";
+import closeIcon from "../images/close-icon.svg"
 
 export default function Modal() {
     const { books, addBook, removeBook } = useContext(BooksContext);
@@ -87,7 +88,7 @@ export default function Modal() {
                             </h2>
                             <img
                                 className={styles.closeIcon}
-                                src="/close-icon.svg"
+                                src={closeIcon}
                                 alt="Close button"
                                 onClick={handleClose}
                             />
@@ -123,7 +124,7 @@ export default function Modal() {
                             </h2>
                             <img
                                 className={styles.closeIcon}
-                                src="/close-icon.svg"
+                                src={closeIcon}
                                 alt="Close button"
                                 onClick={handleClose}
                             />

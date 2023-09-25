@@ -22,3 +22,8 @@ export const ModalContext = createContext({
     handleOpen: () => {},
     handleClose: () => {},
 });
+
+export const ThemeContext = createContext({
+    type: "dark",
+    setTheme: (isDark) => {}
+})

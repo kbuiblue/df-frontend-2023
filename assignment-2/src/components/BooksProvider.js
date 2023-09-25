@@ -60,7 +60,6 @@ export const BooksProvider = ({ children }) => {
     useEffect(() => {
         const newPages = getPagination();
 
-        console.log(newPages);
         setPages(newPages);
         setCurrentPage(newPages[activePageNumber - 1]);
 

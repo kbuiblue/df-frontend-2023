@@ -7,20 +7,23 @@ import Footer from "./Footer";
 import { BooksProvider } from "./BooksProvider";
 import { ModalProvider } from "./ModalProvider";
 import Modal from "./Modal";
+import { ThemeProvider } from "./ThemeProvider";
 
 function App() {
     return (
         <div className={styles.App}>
-            <ModalProvider>
-                <Header />
-                <BooksProvider>
-                    <SearchBar />
-                    <Table />
-                    <Nav />
-                    <Modal />
-                </BooksProvider>
-                <Footer />
-            </ModalProvider>
+            <ThemeProvider>
+                <ModalProvider>
+                    <Header />
+                    <BooksProvider>
+                        <SearchBar />
+                        <Table />
+                        <Nav />
+                        <Modal />
+                    </BooksProvider>
+                    <Footer />
+                </ModalProvider>
+            </ThemeProvider>
         </div>
     );
 }

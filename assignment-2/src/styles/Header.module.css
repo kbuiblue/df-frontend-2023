@@ -14,3 +14,9 @@ header h1 {
 header span {
     color: var(--hightlight);
 }
+
+.rightHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -3,6 +3,7 @@ import styles from "../styles/Header.module.css";
 import disableStyles from "../styles/DisableStyles.module.css";
 import Profile from "./Profile";
 import { ModalContext } from "./context";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
     const { isOpen } = useContext(ModalContext);
@@ -18,7 +19,10 @@ export default function Header() {
             <h1>
                 <span>Book</span>store
             </h1>
-            <Profile />
+            <div className={styles.rightHeader}>
+                <ThemeToggle />
+                <Profile />
+            </div>
         </header>
     );
 }

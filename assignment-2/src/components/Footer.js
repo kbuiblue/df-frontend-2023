@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styles from "../styles/Footer.module.css";
 import disableStyles from "../styles/DisableStyles.module.css";
+import heartIcon from "../images/heart-icon.svg"
 import { ModalContext } from "./context";
 
 export default function Footer() {
@@ -15,9 +16,9 @@ export default function Footer() {
             }
         >
             <div className={styles.copyright}>
-                &copy; 2023 || Made with{" "}
-                <img src="/heart-icon.svg" alt="Red heart icon" /> ||
-                <a href="https://github.com/kbuiblue/df-frontend-2023/tree/main/assignment-1">
+                &copy; 2023 || Made with
+                <img src={heartIcon} alt="Red heart icon" /> ||
+                <a href="https://github.com/kbuiblue/df-frontend-2023/tree/main/assignment-2">
                     Source code
                 </a>
             </div>
