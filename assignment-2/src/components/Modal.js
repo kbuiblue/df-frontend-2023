@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "../styles/Modal.module.css";
 import { BooksContext, ModalContext } from "./context";
 
 export default function Modal() {
     const { books, addBook, removeBook } = useContext(BooksContext);
-    const { type, isOpen, currentBookIndex, handleClose } =
+    const { currentPage } = useContext(BooksContext);
+    const { modalType, isOpen, currentBookIndex, handleClose } =
         useContext(ModalContext);
 
     const [userInput, setUserInput] = useState({
@@ -15,7 +16,8 @@ export default function Modal() {
 
     const topicsSet = new Set(books.map((book) => book.topic));
     const topicsArray = Array.from(topicsSet);
-    const deletedBook = books[currentBookIndex];
+    const deletedBook = currentPage && currentPage[currentBookIndex];
+
 
     const handleNameInput = (value) => {
         if (value) {
@@ -46,22 +48,36 @@ export default function Modal() {
 
     const handleBookAddition = (event) => {
         event.preventDefault();
+
         addBook(userInput);
+
+        handleClose();
+    };
+
+    useEffect(() => {
+        const randomNumber = Math.floor(Math.random() * 300 + books.length);
+
+        setUserInput((prevUserInput) => ({
+            ...prevUserInput,
+            id: `${randomNumber}${userInput.name}`,
+        }));
+    }, [isOpen]);
+
+    useEffect(() => {
         setUserInput({
             name: "",
             author: "",
             topic: "",
         });
+    }, [books]);
+
+    const handleBookRemoval = (deletedBook) => {
+        removeBook(deletedBook);
         handleClose();
     };
 
-    const handleBookRemoval = () => {
-        removeBook(currentBookIndex);
-        handleClose();
-    };
-
-    const renderModal = (type) => {
-        switch (type) {
+    const renderModal = (modalType) => {
+        switch (modalType) {
             case "delete":
                 return (
                     <div className={styles.modalDelete}>
@@ -85,7 +101,7 @@ export default function Modal() {
                         <div className={styles.modalButton}>
                             <button
                                 className={styles.secondaryButton}
-                                onClick={handleBookRemoval}
+                                onClick={() => handleBookRemoval(deletedBook)}
                             >
                                 Delete
                             </button>
@@ -121,6 +137,7 @@ export default function Modal() {
                                 onChange={(event) =>
                                     handleNameInput(event.target.value)
                                 }
+                                value={userInput.name}
                             />
                             <label for="author">Author</label>
                             <input
@@ -130,24 +147,30 @@ export default function Modal() {
                                 onChange={(event) =>
                                     handleAuthorInput(event.target.value)
                                 }
+                                value={userInput.author}
                             />
                             <label for="topic">Topic</label>
                             <select
                                 id="topic"
                                 name="topic"
-                                defaultValue=""
+                                defaultValue={
+                                    userInput.topic ? userInput.topic : null
+                                }
                                 onChange={(event) =>
                                     handleSelectInput(event.target.value)
                                 }
+                                required
                             >
                                 <option
                                     className={styles.defaultValue}
-                                    value=""
+                                    value={null}
                                 >
                                     Choose a topic
                                 </option>
-                                {topicsArray.map((topic) => (
-                                    <option value={topic}>{topic}</option>
+                                {topicsArray.map((topic, index) => (
+                                    <option key={index} value={topic}>
+                                        {topic}
+                                    </option>
                                 ))}
                             </select>
                             <button
@@ -164,6 +187,10 @@ export default function Modal() {
         }
     };
     return (
-        <>{isOpen && <div className={styles.modal}>{renderModal(type)}</div>}</>
+        <>
+            {isOpen && (
+                <div className={styles.modal}>{renderModal(modalType)}</div>
+            )}
+        </>
     );
 }

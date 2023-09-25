@@ -3,10 +3,10 @@ import styles from "../styles/DeleteBookButton.module.css";
 import { ModalContext } from "./context";
 
 export default function DeleteBookButton({ index }) {
-    const { handleType, handleOpen, handleBookIndex } = useContext(ModalContext);
+    const { handleModalType, handleOpen, handleBookIndex } = useContext(ModalContext);
 
     const deleteBookModal = () => {
-        handleType("delete")
+        handleModalType("delete")
         handleBookIndex(index)
         handleOpen()
     }

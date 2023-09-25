@@ -3,10 +3,10 @@ import styles from "../styles/SearchBar.module.css";
 import { ModalContext } from "./context";
 
 export default function AddBookButton() {
-    const { handleType, handleOpen } = useContext(ModalContext);
+    const { handleModalType, handleOpen } = useContext(ModalContext);
 
     const addBookModal = () => {
-        handleType("add");
+        handleModalType("add");
         handleOpen();
     };
 

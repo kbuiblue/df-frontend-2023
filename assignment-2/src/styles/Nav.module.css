@@ -16,11 +16,14 @@
     width: 2.5rem;
     border-radius: 0.2rem;
 }
-.paginationNumber:hover,
-.paginationButton:not(.disabled):hover {
-    background: #fff;
-}
-.paginationNumber.active {
+
+.active {
     color: #fff;
     background: var(--hightlight);
+}
+
+.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    user-select: none;
 }

@@ -4,7 +4,7 @@ import { ModalContext } from "./context";
 export const ModalProvider = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [currentBookIndex, setCurrentBookIndex] = useState(null);
-    const [type, setType] = useState(null);
+    const [modalType, setModalType] = useState(null);
 
     const handleOpen = () => {
         setIsOpen(true);
@@ -14,8 +14,8 @@ export const ModalProvider = ({ children }) => {
         setIsOpen(false);
     };
 
-    const handleType = (newType) => {
-        setType(newType);
+    const handleModalType = (newModalType) => {
+        setModalType(newModalType);
     };
 
     const handleBookIndex = (index) => {
@@ -26,9 +26,9 @@ export const ModalProvider = ({ children }) => {
         <ModalContext.Provider
             value={{
                 isOpen,
-                type,
+                modalType,
                 currentBookIndex,
-                handleType,
+                handleModalType,
                 handleBookIndex,
                 handleOpen,
                 handleClose,
