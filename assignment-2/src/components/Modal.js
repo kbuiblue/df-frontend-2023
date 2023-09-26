@@ -50,9 +50,7 @@ export default function Modal() {
 
     const handleBookAddition = (event) => {
         event.preventDefault();
-
         addBook(userInput);
-
         handleClose();
     };
 
@@ -166,7 +164,7 @@ export default function Modal() {
                         </div>
                         <form>
                             <label for="name">Name</label>
-                            <input
+                            <input className={`${theme.type === "dark" && styles.dark} ${styles.formInput}`}
                                 type="text"
                                 id="name"
                                 name="name"
@@ -176,7 +174,7 @@ export default function Modal() {
                                 value={userInput.name}
                             />
                             <label for="author">Author</label>
-                            <input
+                            <input className={`${theme.type === "dark" && styles.dark} ${styles.formInput}`}
                                 type="text"
                                 id="author"
                                 name="author"
@@ -186,7 +184,7 @@ export default function Modal() {
                                 value={userInput.author}
                             />
                             <label for="topic">Topic</label>
-                            <select
+                            <select className={`${theme.type === "dark" && styles.dark} ${styles.formInput}`}
                                 id="topic"
                                 name="topic"
                                 defaultValue={
@@ -204,7 +202,7 @@ export default function Modal() {
                                     Choose a topic
                                 </option>
                                 {topicsArray.map((topic, index) => (
-                                    <option key={index} value={topic}>
+                                    <option className={`${styles.formOption}`} key={index} value={topic}>
                                         {topic}
                                     </option>
                                 ))}

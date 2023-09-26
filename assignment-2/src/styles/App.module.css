@@ -7,8 +7,8 @@
 }
 
 .dark {
-    --background: #290e13;
-    --hightlight: #eee;
+    --background: #0f0808;
+    --hightlight: #ccc;
 
     color: var(--hightlight);
     transition: 0.2s linear;

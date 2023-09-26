@@ -75,6 +75,10 @@ export const BooksProvider = ({ children }) => {
             (book) => book.id !== deletedBook.id
         );
         setBooks([...remainingBooks]);
+
+        if (currentPage.length === 1 && activePageNumber > 1) {
+            setActivePageNumber(activePageNumber - 1);
+        }
     };
 
     return (
