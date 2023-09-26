@@ -1,35 +1,26 @@
 @import-normalize;
 
-:root {
-    --hightlight: #cd485d;
-    --pressed: #a63a4b;
-    --border-color: #99a1a9;
-    --border-radius: 5px;
-}
-
 html {
-    font-family: "Inter", sans-serif, "Segoe UI", "Roboto",
-    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;;
+    font-family: "Inter", sans-serif, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+        "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     line-height: 1.4;
     letter-spacing: 0.01em;
 }
 
 body {
-    position: relative;
-    max-width: 75%;
-    margin: 0 auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    background: none;
 }
 
 #root {
-    padding-top: 1em;
-    min-height: 80vh;
-}
-
-img {
-    max-width: 2.5em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    --background: #fff;
+    --hightlight: #cd485d;
+    --pressed: #a63a4b;
+    --border: #99a1a9;
+    --border-radius: 5px;
 }
 
 a {
@@ -46,11 +37,12 @@ a:hover {
     cursor: pointer;
     user-select: none;
     border: none;
-    color: #ffffff;
+    color: var(--background);
     background-color: var(--hightlight);
     font-weight: 500;
     padding: 0.8em 1em;
 }
+
 
 .button:active {
     scale: 0.9;

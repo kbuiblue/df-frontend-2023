@@ -15,11 +15,24 @@
     height: 2.5rem;
     width: 2.5rem;
     border-radius: 0.2rem;
+    transition: 0.2s linear;
 }
 
-.active {
-    color: #fff;
+.paginationButton.active {
+    color: var(--background);
     background: var(--hightlight);
+}
+
+.paginationNumber.dark,
+.paginationButton.dark {
+    color: var(--hightlight);
+}
+
+.paginationNumber.dark.active,
+.paginationButton.dark.active {
+    color: var(--background);
+    background: var(--hightlight);
+    border: 1px solid var(--background);
 }
 
 .disabled {

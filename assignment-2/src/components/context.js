@@ -24,6 +24,6 @@ export const ModalContext = createContext({
 });
 
 export const ThemeContext = createContext({
-    type: "dark",
-    setTheme: (isDark) => {}
+    theme: { isChecked: false, type: "light" },
+    settheme: (isDark) => {}
 })

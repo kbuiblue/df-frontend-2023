@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "../styles/Modal.module.css";
-import { BooksContext, ModalContext } from "./context";
-import closeIcon from "../images/close-icon.svg"
+import { BooksContext, ModalContext, ThemeContext } from "./context";
+import closeIcon from "../images/close-icon.svg";
+import closeIconDark from "../images/close-icon-dark.svg";
 
 export default function Modal() {
     const { books, addBook, removeBook } = useContext(BooksContext);
     const { currentPage } = useContext(BooksContext);
     const { modalType, isOpen, currentBookIndex, handleClose } =
         useContext(ModalContext);
+    const { theme } = useContext(ThemeContext);
 
     const [userInput, setUserInput] = useState({
         name: "",
@@ -18,7 +20,6 @@ export default function Modal() {
     const topicsSet = new Set(books.map((book) => book.topic));
     const topicsArray = Array.from(topicsSet);
     const deletedBook = currentPage && currentPage[currentBookIndex];
-
 
     const handleNameInput = (value) => {
         if (value) {
@@ -81,14 +82,27 @@ export default function Modal() {
         switch (modalType) {
             case "delete":
                 return (
-                    <div className={styles.modalDelete}>
+                    <div className={`${styles.modalDelete}`}>
                         <div className={styles.modalTop}>
                             <h2>
-                                <span>Delete</span> Book
+                                <span
+                                    className={`${
+                                        theme.type === "dark" && styles.dark
+                                    } ${styles.modalHighlight}`}
+                                >
+                                    Delete
+                                </span>{" "}
+                                Book
                             </h2>
                             <img
-                                className={styles.closeIcon}
-                                src={closeIcon}
+                                className={`${
+                                    theme.type === "dark" && styles.dark
+                                } ${styles.closeIcon}`}
+                                src={
+                                    theme.type === "dark"
+                                        ? closeIconDark
+                                        : closeIcon
+                                }
                                 alt="Close button"
                                 onClick={handleClose}
                             />
@@ -99,15 +113,23 @@ export default function Modal() {
                                 {deletedBook.name}?
                             </strong>
                         </h3>
-                        <div className={styles.modalButton}>
+                        <div
+                            className={`${
+                                theme.type === "dark" && styles.dark
+                            } ${styles.modalButton}`}
+                        >
                             <button
-                                className={styles.secondaryButton}
+                                className={`${
+                                    theme.type === "dark" && styles.dark
+                                } ${styles.secondaryButton}`}
                                 onClick={() => handleBookRemoval(deletedBook)}
                             >
                                 Delete
                             </button>
                             <button
-                                className={styles.button}
+                                className={`${
+                                    theme.type === "dark" && styles.dark
+                                } ${styles.button}`}
                                 onClick={handleClose}
                             >
                                 Cancel
@@ -120,11 +142,24 @@ export default function Modal() {
                     <div>
                         <div className={styles.modalTop}>
                             <h2>
-                                <span>Add</span> Book
+                                <span
+                                    className={`${
+                                        theme.type === "dark" && styles.dark
+                                    } ${styles.modalHighlight}`}
+                                >
+                                    Add
+                                </span>{" "}
+                                Book
                             </h2>
                             <img
-                                className={styles.closeIcon}
-                                src={closeIcon}
+                                className={`${
+                                    theme.type === "dark" && styles.dark
+                                } ${styles.closeIcon}`}
+                                src={
+                                    theme.type === "dark"
+                                        ? closeIconDark
+                                        : closeIcon
+                                }
                                 alt="Close button"
                                 onClick={handleClose}
                             />
@@ -175,7 +210,9 @@ export default function Modal() {
                                 ))}
                             </select>
                             <button
-                                className="button"
+                                className={`${
+                                    theme.type === "dark" && styles.dark
+                                } ${styles.button}`}
                                 onClick={(event) => handleBookAddition(event)}
                             >
                                 Create
@@ -190,7 +227,13 @@ export default function Modal() {
     return (
         <>
             {isOpen && (
-                <div className={styles.modal}>{renderModal(modalType)}</div>
+                <div
+                    className={`${theme.type === "dark" && styles.dark} ${
+                        styles.modal
+                    }`}
+                >
+                    {renderModal(modalType)}
+                </div>
             )}
         </>
     );

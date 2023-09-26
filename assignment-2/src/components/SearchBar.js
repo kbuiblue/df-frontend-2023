@@ -1,17 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
 import styles from "../styles/SearchBar.module.css";
 import disableStyles from "../styles/DisableStyles.module.css";
-import { BooksContext, ModalContext } from "./context";
+import { BooksContext, ModalContext, ThemeContext } from "./context";
 import AddBookButton from "./AddBookButton";
 
 export default function SearchBar() {
     const { isOpen } = useContext(ModalContext);
-    const {
-        books,
-        pages,
-        setCurrentPage,
-        getPagination,
-    } = useContext(BooksContext);
+    const { books, pages, setCurrentPage, getPagination } =
+        useContext(BooksContext);
+    const { theme } = useContext(ThemeContext);
     const [searchTerm, setSearchTerm] = useState(null);
 
     useEffect(() => {
@@ -39,14 +36,14 @@ export default function SearchBar() {
 
     return (
         <div
-            className={
-                isOpen
-                    ? `${disableStyles.disabled} ${styles.searchBar}`
-                    : styles.searchBar
-            }
+            className={`${theme.type === "dark" && styles.dark} ${
+                isOpen && disableStyles.disabled
+            } ${styles.searchBar}`}
         >
             <input
-                className={styles.searchInput}
+                className={`${theme.type === "dark" && styles.dark} ${
+                    isOpen && disableStyles.disabled
+                } ${styles.searchInput}`}
                 placeholder="Search books"
                 type="text"
                 onChange={(event) => handleSearchInput(event.target.value)}

@@ -23,3 +23,11 @@ footer img {
     font-weight: 400;
     margin-left: 0.5em;
 }
+
+.dark {
+    color: var(--hightlight);
+}
+
+.sourceLink.dark:hover {
+    color: #cd485d;
+}

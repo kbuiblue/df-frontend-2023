@@ -2,18 +2,31 @@ import { useState } from "react";
 import { ThemeContext } from "./context";
 
 export const ThemeProvider = ({ children }) => {
-    const [themeType, setThemeType] = useState("dark");
+    const defaultTheme = JSON.parse(localStorage.getItem("defaultTheme"));
+    const [theme, setTheme] = useState(
+        defaultTheme ? defaultTheme : { isChecked: false, type: "light" }
+    );
 
-    const handleSettingTheme = (isDark) => {
+    const handleSettingTheme = (event) => {
+        const isDark = event.target.checked;
+
         if (isDark) {
-            setThemeType("dark");
+            setTheme({ isChecked: true, type: "dark" });
+            localStorage.setItem(
+                "defaultTheme",
+                JSON.stringify({ isChecked: true, type: "dark" })
+            );
         } else {
-            setThemeType("light");
+            setTheme({ isChecked: false, type: "light" });
+            localStorage.setItem(
+                "defaultTheme",
+                JSON.stringify({ isChecked: false, type: "light" })
+            );
         }
     };
 
     return (
-        <ThemeContext.Provider value={(themeType, handleSettingTheme)}>
+        <ThemeContext.Provider value={{ theme, handleSettingTheme }}>
             {children}
         </ThemeContext.Provider>
     );

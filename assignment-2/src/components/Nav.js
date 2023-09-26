@@ -1,24 +1,17 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import styles from "../styles/Nav.module.css";
 import disableStyles from "../styles/DisableStyles.module.css";
-import { ModalContext, BooksContext } from "./context";
+import { ModalContext, BooksContext, ThemeContext } from "./context";
 
 export default function Nav() {
     const { isOpen } = useContext(ModalContext);
-    const {
-        pages,
-        activePageNumber,
-        setCurrentPage,
-        setActivePageNumber,
-    } = useContext(BooksContext);
+    const { pages, activePageNumber, setCurrentPage, setActivePageNumber } =
+        useContext(BooksContext);
+    const { theme } = useContext(ThemeContext);
 
     const handlePageClick = (pageNumber) => {
         setActivePageNumber(pageNumber);
     };
-
-    useEffect(() => {
-        setCurrentPage(pages[activePageNumber - 1]);
-    }, [activePageNumber])
 
     return (
         <nav
@@ -30,9 +23,8 @@ export default function Nav() {
         >
             <button
                 className={
-                    activePageNumber === 1
-                        ? `${styles.paginationButton} ${styles.disabled}`
-                        : styles.paginationButton
+                     `${activePageNumber === 1
+                        && styles.disabled} ${theme.type === "dark" && styles.dark} ${styles.paginationButton}`
                 }
                 id="prev-button"
                 aria-label="Previous page"
@@ -51,11 +43,11 @@ export default function Nav() {
 
                     return (
                         <button
-                            className={
-                                activePageNumber === pageNumber
-                                    ? `${styles.paginationButton} ${styles.active}`
-                                    : styles.paginationButton
-                            }
+                            className={`${
+                                activePageNumber === pageNumber && styles.active
+                            } ${theme.type === "dark" && styles.dark} ${
+                                styles.paginationButton
+                            }`}
                             key={index}
                             onClick={() => handlePageClick(pageNumber)}
                         >
@@ -67,9 +59,8 @@ export default function Nav() {
 
             <button
                 className={
-                    activePageNumber === pages.length
-                        ? `${styles.paginationButton} ${styles.disabled}`
-                        : styles.paginationButton
+                    `${activePageNumber === pages.length
+                        && styles.disabled} ${theme.type === "dark" && styles.dark} ${styles.paginationButton}`
                 }
                 id="next-button"
                 aria-label="Next page"

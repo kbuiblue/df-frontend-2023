@@ -5,16 +5,23 @@ import sunIcon from "../images/sun-icon.svg";
 import { ThemeContext } from "./context";
 
 export default function ThemeToggle() {
-    const { themeType, setThemeType } = useContext(ThemeContext);
+    const { theme, handleSettingTheme } = useContext(ThemeContext);
+    const isChecked = theme.isChecked;
 
     return (
         <div>
-            <input className={styles.checkbox} type="checkbox" id="checkbox" />
+            <input
+                className={styles.checkbox}
+                type="checkbox"
+                id="checkbox"
+                onChange={handleSettingTheme}
+                defaultChecked={isChecked}
+            />
             <label
                 for="checkbox"
                 className={
-                    themeType === "dark"
-                        ? `${styles.checkboxLabel}${styles.dark}`
+                    theme.type === "dark"
+                        ? `${styles.checkboxLabel} ${styles.dark}`
                         : styles.checkboxLabel
                 }
             >
@@ -28,7 +35,13 @@ export default function ThemeToggle() {
                     src={sunIcon}
                     alt="Light mode toggle"
                 ></img>
-                <span className={styles.ball}></span>
+                <span
+                    className={
+                        theme.type === "dark"
+                            ? `${styles.ball} ${styles.dark}`
+                            : styles.ball
+                    }
+                ></span>
             </label>
         </div>
     );

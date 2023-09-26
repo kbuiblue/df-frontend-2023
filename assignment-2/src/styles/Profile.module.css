@@ -8,6 +8,15 @@
     gap: 0.75em;
 }
 
-img {
+.profileIcon {
     border-radius: 50px;
+    max-width: 2.5em;
+}
+
+.userContainer.dark {
+    color: var(--hightlight);
+}
+
+.userContainer.dark:hover {
+    color: #cd485d;
 }

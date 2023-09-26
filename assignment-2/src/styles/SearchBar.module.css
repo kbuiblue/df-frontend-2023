@@ -12,7 +12,6 @@
 }
 
 .searchInput {
-    border: 2px solid #575757;
     outline-color: var(--hightlight);
 }
 
@@ -20,7 +19,7 @@
     cursor: pointer;
     user-select: none;
     border: none;
-    color: #ffffff;
+    color: var(--background);
     background-color: var(--hightlight);
     font-weight: 500;
     padding: 0.8em 1em;
@@ -29,4 +28,12 @@
 .button:active {
     scale: 0.9;
     background-color: var(--pressed);
+}
+
+.button.dark:active {
+    background-color: #cd485d;
+}
+
+.searchInput.dark {
+    outline-color: #cd485d;
 }

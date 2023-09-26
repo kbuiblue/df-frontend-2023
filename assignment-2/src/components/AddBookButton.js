@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import styles from "../styles/SearchBar.module.css";
-import { ModalContext } from "./context";
+import { ModalContext, ThemeContext } from "./context";
 
 export default function AddBookButton() {
     const { handleModalType, handleOpen } = useContext(ModalContext);
+    const { theme } = useContext(ThemeContext);
 
     const addBookModal = () => {
         handleModalType("add");
@@ -11,7 +12,12 @@ export default function AddBookButton() {
     };
 
     return (
-        <button className={styles.button} onClick={addBookModal}>
+        <button
+            className={`${theme.type === "dark" && styles.dark} ${
+                styles.button
+            }`}
+            onClick={addBookModal}
+        >
             Add Book
         </button>
     );
