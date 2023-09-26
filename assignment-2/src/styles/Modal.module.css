@@ -51,7 +51,7 @@ h3 {
     cursor: pointer;
     user-select: none;
     border: none;
-    color: #ffffff;
+    color: #fff;
     background-color: var(--hightlight);
     font-weight: 500;
     padding: 0.8em 1em;

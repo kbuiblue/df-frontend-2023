@@ -11,11 +11,15 @@ header {
     margin-left: 0.25em;
 }
 
+.heading.dark {
+    color: #eee;
+}
+
 .highlight {
     color: var(--hightlight);
 }
 
-.heading.dark {
+.highlight.dark {
     color: #cd485d;
 }
 

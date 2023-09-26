@@ -45,10 +45,34 @@ export default function Table() {
             >
                 <thead>
                     <tr>
-                        <th className={styles.tableHeading}>Name</th>
-                        <th className={styles.tableHeading}>Author</th>
-                        <th className={styles.tableHeading}>Topic</th>
-                        <th className={styles.tableHeading}>Action</th>
+                        <th
+                            className={`${
+                                theme.type === "dark" && styles.dark
+                            } ${styles.tableHeading}`}
+                        >
+                            Name
+                        </th>
+                        <th
+                            className={`${
+                                theme.type === "dark" && styles.dark
+                            } ${styles.tableHeading}`}
+                        >
+                            Author
+                        </th>
+                        <th
+                            className={`${
+                                theme.type === "dark" && styles.dark
+                            } ${styles.tableHeading}`}
+                        >
+                            Topic
+                        </th>
+                        <th
+                            className={`${
+                                theme.type === "dark" && styles.dark
+                            } ${styles.tableHeading}`}
+                        >
+                            Action
+                        </th>
                     </tr>
                 </thead>
                 <tbody>

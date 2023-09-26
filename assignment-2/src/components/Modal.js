@@ -22,30 +22,24 @@ export default function Modal() {
     const deletedBook = currentPage && currentPage[currentBookIndex];
 
     const handleNameInput = (value) => {
-        if (value) {
-            setUserInput((prevInput) => ({
-                ...prevInput,
-                name: value,
-            }));
-        }
+        setUserInput((prevInput) => ({
+            ...prevInput,
+            name: value,
+        }));
     };
 
     const handleAuthorInput = (value) => {
-        if (value) {
-            setUserInput((prevInput) => ({
-                ...prevInput,
-                author: value,
-            }));
-        }
+        setUserInput((prevInput) => ({
+            ...prevInput,
+            author: value,
+        }));
     };
 
     const handleSelectInput = (value) => {
-        if (value) {
-            setUserInput((prevInput) => ({
-                ...prevInput,
-                topic: value,
-            }));
-        }
+        setUserInput((prevInput) => ({
+            ...prevInput,
+            topic: value,
+        }));
     };
 
     const handleBookAddition = (event) => {
@@ -164,7 +158,10 @@ export default function Modal() {
                         </div>
                         <form>
                             <label for="name">Name</label>
-                            <input className={`${theme.type === "dark" && styles.dark} ${styles.formInput}`}
+                            <input
+                                className={`${
+                                    theme.type === "dark" && styles.dark
+                                } ${styles.formInput}`}
                                 type="text"
                                 id="name"
                                 name="name"
@@ -174,7 +171,10 @@ export default function Modal() {
                                 value={userInput.name}
                             />
                             <label for="author">Author</label>
-                            <input className={`${theme.type === "dark" && styles.dark} ${styles.formInput}`}
+                            <input
+                                className={`${
+                                    theme.type === "dark" && styles.dark
+                                } ${styles.formInput}`}
                                 type="text"
                                 id="author"
                                 name="author"
@@ -184,7 +184,10 @@ export default function Modal() {
                                 value={userInput.author}
                             />
                             <label for="topic">Topic</label>
-                            <select className={`${theme.type === "dark" && styles.dark} ${styles.formInput}`}
+                            <select
+                                className={`${
+                                    theme.type === "dark" && styles.dark
+                                } ${styles.formInput}`}
                                 id="topic"
                                 name="topic"
                                 defaultValue={
@@ -202,7 +205,11 @@ export default function Modal() {
                                     Choose a topic
                                 </option>
                                 {topicsArray.map((topic, index) => (
-                                    <option className={`${styles.formOption}`} key={index} value={topic}>
+                                    <option
+                                        className={`${styles.formOption}`}
+                                        key={index}
+                                        value={topic}
+                                    >
                                         {topic}
                                     </option>
                                 ))}

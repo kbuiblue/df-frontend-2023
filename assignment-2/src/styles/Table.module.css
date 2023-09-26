@@ -20,6 +20,10 @@ table {
     transition: 0.2s linear;
 }
 
+.tableHeading.dark {
+    color: #eee;
+}
+
 td {
     padding: 1.25em 1em;
     border: 1px solid var(--border);
