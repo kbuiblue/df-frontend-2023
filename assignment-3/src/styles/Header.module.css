@@ -1,0 +1,30 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25 1em;
+}
+
+.heading {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-left: 0.25em;
+}
+
+.heading.dark {
+    color: #eee;
+}
+
+.highlight {
+    color: var(--hightlight);
+}
+
+.highlight.dark {
+    color: #cd485d;
+}
+
+.rightHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

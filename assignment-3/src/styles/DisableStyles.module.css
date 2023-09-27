@@ -1,0 +1,6 @@
+.disabled {
+    opacity: 0.4;
+    filter: blur(5px);
+    pointer-events: none;
+    user-select: none;
+}

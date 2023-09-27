@@ -1,0 +1,40 @@
+.searchBar {
+    margin-top: 1em;
+    margin-right: 0.25em;
+    text-align: right;
+    color: var(--hightlight);
+}
+
+.searchBar > * {
+    padding: 0.75em;
+    border-radius: var(--border-radius);
+    margin-left: 0.5em;
+}
+
+.button {
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    color: var(--background);
+    background-color: var(--hightlight);
+    font-weight: 500;
+    padding: 0.8em 1em;
+}
+
+.button:active {
+    scale: 0.9;
+    background-color: var(--pressed);
+}
+
+.button.dark:active {
+    background-color: #cd485d;
+}
+
+.searchInput.dark {
+    background: transparent;
+    color: var(--hightlight);
+}
+
+.searchInput.dark::placeholder {
+    color: var(--hightlight);
+}
