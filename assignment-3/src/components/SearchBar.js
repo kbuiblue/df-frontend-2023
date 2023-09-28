@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import styles from "../styles/SearchBar.module.css";
 import disableStyles from "../styles/DisableStyles.module.css";
-import { BooksContext, ModalContext, ThemeContext } from "./context/context";
+import { BooksInterface, ModalInterface, ThemeInterface } from "./context/context";
 import AddBookButton from "./AddBookButton";
 
 export default function SearchBar() {

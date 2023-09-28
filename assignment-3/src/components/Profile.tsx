@@ -1,14 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from "../styles/Profile.module.css";
 import profile from "../images/kb-logo.png";
-import { ThemeContext } from "./context/context";
 
-export default function Profile() {
-    const { theme } = useContext(ThemeContext);
+interface ProfileProps {
+    theme?: {type: "light" | "dark"}
+}
+
+const Profile: React.FC<ProfileProps> = ({ theme }) => {
 
     return (
         <a href="https://github.com/kbuiblue" target="_blank" rel="noreferrer">
-            <div className={`${theme.type === "dark" && styles.dark} ${styles.userContainer}`}>
+            <div className={`${theme?.type === "dark" && styles.dark} ${styles.userContainer}`}>
                 <img
                     className={styles.profileIcon}
                     src={profile}
@@ -19,3 +21,5 @@ export default function Profile() {
         </a>
     );
 }
+
+export default Profile

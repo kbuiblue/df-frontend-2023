@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import Modal from "./components/Modal";
 import { BooksProvider } from "./components/context/BooksProvider";
 import { ModalProvider } from "./components/context/ModalProvider";
-import { ThemeContext } from "./components/context/context";
+import { ThemeInterface } from "./components/context/context";
 
 function App() {
     const { theme } = useContext(ThemeContext);

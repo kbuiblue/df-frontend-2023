@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "../styles/SearchBar.module.css";
-import { ModalContext, ThemeContext } from "./context/context";
+import { ModalInterface, ThemeInterface } from "./context/context";
 
 export default function AddBookButton() {
     const { handleModalType, handleOpen } = useContext(ModalContext);

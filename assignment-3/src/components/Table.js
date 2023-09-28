@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import styles from "../styles/Table.module.css";
-import { BooksContext, ModalContext, ThemeContext } from "./context/context";
+import { BooksInterface, ModalInterface, ThemeInterface } from "./context/context";
 import disableStyles from "../styles/DisableStyles.module.css";
 import DeleteBookButton from "./DeleteBookButton";
 

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "../styles/Modal.module.css";
-import { BooksContext, ModalContext, ThemeContext } from "./context/context";
+import { BooksInterface, ModalInterface, ThemeInterface } from "./context/context";
 import closeIcon from "../images/close-icon.svg";
 import closeIconDark from "../images/close-icon-dark.svg";
 

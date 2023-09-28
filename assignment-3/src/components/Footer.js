@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styles from "../styles/Footer.module.css";
 import disableStyles from "../styles/DisableStyles.module.css";
 import heartIcon from "../images/heart-icon.svg";
-import { ModalContext, ThemeContext } from "./context/context";
+import { ModalInterface, ThemeInterface } from "./context/context";
 
 export default function Footer() {
     const { isOpen } = useContext(ModalContext);

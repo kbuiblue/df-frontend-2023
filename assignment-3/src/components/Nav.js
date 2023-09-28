@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styles from "../styles/Nav.module.css";
 import disableStyles from "../styles/DisableStyles.module.css";
-import { ModalContext, BooksContext, ThemeContext } from "./context/context";
+import { ModalInterface, BooksInterface, ThemeInterface } from "./context/context";
 
 export default function Nav() {
     const { isOpen } = useContext(ModalContext);

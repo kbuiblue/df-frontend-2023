@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styles from "../styles/ThemeToggle.module.css";
 import moonIcon from "../images/moon-icon.svg";
 import sunIcon from "../images/sun-icon.svg";
-import { ThemeContext } from "./context/context";
+import { ThemeInterface } from "./context/context";
 
 export default function ThemeToggle() {
     const { theme, handleSettingTheme } = useContext(ThemeContext);

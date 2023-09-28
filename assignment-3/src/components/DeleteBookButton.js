@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "../styles/DeleteBookButton.module.css";
-import { ModalContext } from "./context/context";
+import { ModalInterface } from "./context/context";
 
 export default function DeleteBookButton({ index }) {
     const { handleModalType, handleOpen, handleBookIndex } = useContext(ModalContext);
