@@ -1,5 +1,6 @@
-import { ReactNode, useEffect, useState, useMemo, useCallback } from 'react'
-import { BooksContext, Book } from './context'
+import { ReactNode, useEffect, useState, useMemo, useCallback, useRef } from 'react'
+import { BooksContext } from './context'
+import { Book } from '../types'
 
 interface BooksProviderProps {
     children: ReactNode
@@ -58,16 +59,21 @@ export const BooksProvider: React.FC<BooksProviderProps> = ({ children }) => {
     const [pages, setPages] = useState(getPagination(books))
     const [currentPage, setCurrentPage] = useState(pages[0])
     const [activePageNumber, setActivePageNumber] = useState(1)
-    const booksParam: Book[] | null = storedBooks || null
+
+    const booksRef = useRef(books);
+    booksRef.current = books;
+
+    const pagesRef = useRef(pages);
+    pagesRef.current = pages;
 
     useEffect(() => {
-        const newPages = getPagination(booksParam || books)
+        const newPages = getPagination(books)
 
         setPages(newPages)
         setCurrentPage(newPages[activePageNumber - 1])
 
         localStorage.setItem('books', JSON.stringify(books))
-    }, [books, booksParam, activePageNumber, getPagination])
+    }, [books, activePageNumber, getPagination])
 
     const addBook = useCallback(
         (book : Book) => {
@@ -96,6 +102,8 @@ export const BooksProvider: React.FC<BooksProviderProps> = ({ children }) => {
             pages,
             currentPage,
             activePageNumber,
+            booksRef,
+            pagesRef,
             addBook,
             removeBook,
             setPages,
@@ -108,6 +116,8 @@ export const BooksProvider: React.FC<BooksProviderProps> = ({ children }) => {
             pages,
             currentPage,
             activePageNumber,
+            booksRef,
+            pagesRef,
             addBook,
             removeBook,
             setPages,
