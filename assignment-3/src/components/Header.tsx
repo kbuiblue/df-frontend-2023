@@ -3,12 +3,9 @@ import styles from '../styles/Header.module.css'
 import disableStyles from '../styles/DisableStyles.module.css'
 import Profile from './Profile'
 import ThemeToggle from './ThemeToggle'
+import { AppProps } from './types'
 
-interface HeaderProps {
-    isOpen?: boolean
-    theme?: { type: 'light' | 'dark' }
-}
-const Header: React.FC<HeaderProps> = ({ isOpen, theme }) =>  {
+const Header: React.FC<AppProps> = ({ isOpen, theme }) =>  {
 
     return (
         <header
