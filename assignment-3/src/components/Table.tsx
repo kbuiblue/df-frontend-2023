@@ -1,17 +1,18 @@
 import React, { useContext, useEffect } from "react";
 import styles from "../styles/Table.module.css";
-import { BooksInterface, ModalInterface, ThemeInterface } from "./context/context";
+import { BooksContext, ModalContext, ThemeContext } from "./context/context";
 import disableStyles from "../styles/DisableStyles.module.css";
 import DeleteBookButton from "./DeleteBookButton";
 
-export default function Table() {
+const Table: React.FC = () => {
     const {
-        pages,
+        pagesRef,
         currentPage,
         setCurrentPage,
         activePageNumber,
         setActivePageNumber,
     } = useContext(BooksContext);
+    const pages = pagesRef.current;
     const { isOpen } = useContext(ModalContext);
     const { theme } = useContext(ThemeContext);
 
@@ -22,9 +23,9 @@ export default function Table() {
         } else {
             setCurrentPage(pages[activePageNumber - 1]);
         }
-    }, [activePageNumber]);
+    }, [activePageNumber, currentPage, pages, setActivePageNumber, setCurrentPage]);
 
-    if (!Array.isArray(pages)) {
+    if (pages.length === 0) {
         return <div>No books found</div>;
     }
 
@@ -92,3 +93,5 @@ export default function Table() {
         </section>
     );
 }
+
+export default Table;
