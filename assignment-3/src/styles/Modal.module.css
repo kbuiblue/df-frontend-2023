@@ -6,6 +6,7 @@
     flex-direction: column;
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
+    min-width: 20em;
     max-width: 22em;
     padding: 1.75em;
     background-color: var(--background);
@@ -113,9 +114,15 @@ form button {
     margin-top: 1em;
 }
 
-.closeIcon {
-    max-width: 5%;
+.closeButton {
+    background: none;
     cursor: pointer;
+    min-width: fit-content;
+    padding: 0;
+}
+
+.closeButton .closeIcon {
+    max-width: 1em;
 }
 
 .closeIcon.dark {
@@ -123,7 +130,6 @@ form button {
 }
 
 .modal button {
-    max-width: 30%;
     padding: 1em 2em;
     align-self: flex-end;
     border-radius: var(--border-radius);

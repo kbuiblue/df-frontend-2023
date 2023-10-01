@@ -89,7 +89,7 @@ const Modal: React.FC = () => {
                             <h2>
                                 <span
                                     className={`${
-                                        theme.type === 'dark' && styles.dark
+                                        theme.type === 'dark' ? styles.dark : ""
                                     } ${styles.modalHighlight}`}
                                 >
                                     Delete
@@ -103,7 +103,7 @@ const Modal: React.FC = () => {
                             >
                                 <img
                                     className={`${
-                                        theme.type === 'dark' && styles.dark
+                                        theme.type === 'dark' ? styles.dark : ""
                                     } ${styles.closeIcon}`}
                                     src={
                                         theme.type === 'dark'
@@ -122,12 +122,12 @@ const Modal: React.FC = () => {
                         </h3>
                         <div
                             className={`${
-                                theme.type === 'dark' && styles.dark
+                                theme.type === 'dark' ? styles.dark : ""
                             } ${styles.modalButton}`}
                         >
                             <button
                                 className={`${
-                                    theme.type === 'dark' && styles.dark
+                                    theme.type === 'dark' ? styles.dark : ""
                                 } ${styles.secondaryButton}`}
                                 onClick={() => handleBookRemoval(deletedBook)}
                             >
@@ -135,7 +135,7 @@ const Modal: React.FC = () => {
                             </button>
                             <button
                                 className={`${
-                                    theme.type === 'dark' && styles.dark
+                                    theme.type === 'dark' ? styles.dark : ""
                                 } ${styles.button}`}
                                 onClick={handleClose}
                                 onKeyDown={handleKeyDown}
@@ -152,7 +152,7 @@ const Modal: React.FC = () => {
                             <h2>
                                 <span
                                     className={`${
-                                        theme.type === 'dark' && styles.dark
+                                        theme.type === 'dark' ? styles.dark : ""
                                     } ${styles.modalHighlight}`}
                                 >
                                     Add
@@ -166,7 +166,7 @@ const Modal: React.FC = () => {
                             >
                                 <img
                                     className={`${
-                                        theme.type === 'dark' && styles.dark
+                                        theme.type === 'dark' ? styles.dark : ""
                                     } ${styles.closeIcon}`}
                                     src={
                                         theme.type === 'dark'
@@ -182,7 +182,7 @@ const Modal: React.FC = () => {
                                 Name
                                 <input
                                     className={`${
-                                        theme.type === 'dark' && styles.dark
+                                        theme.type === 'dark' ? styles.dark : ""
                                     } ${styles.formInput}`}
                                     type="text"
                                     id="name"
@@ -198,7 +198,7 @@ const Modal: React.FC = () => {
                                 Author
                                 <input
                                     className={`${
-                                        theme.type === 'dark' && styles.dark
+                                        theme.type === 'dark' ? styles.dark : ""
                                     } ${styles.formInput}`}
                                     type="text"
                                     id="author"
@@ -214,7 +214,7 @@ const Modal: React.FC = () => {
                                 Topic
                                 <select
                                     className={`${
-                                        theme.type === 'dark' && styles.dark
+                                        theme.type === 'dark' ? styles.dark : ""
                                     } ${styles.formInput}`}
                                     id="topic"
                                     name="topic"
@@ -244,7 +244,7 @@ const Modal: React.FC = () => {
 
                             <button
                                 className={`${
-                                    theme.type === 'dark' && styles.dark
+                                    theme.type === 'dark' ? styles.dark : ""
                                 } ${styles.button}`}
                                 onClick={(event) => handleBookAddition(event)}
                             >
@@ -260,7 +260,7 @@ const Modal: React.FC = () => {
     return (
         isOpen ? (
             <div
-                className={`${theme.type === 'dark' && styles.dark} ${
+                className={`${theme.type === 'dark' ? styles.dark : ""} ${
                     styles.modal
                 }`}
             >

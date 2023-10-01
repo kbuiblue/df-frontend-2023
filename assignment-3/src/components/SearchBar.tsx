@@ -42,12 +42,12 @@ const SearchBar: React.FC = () => {
 
     return (
         <div
-            className={`${theme.type === 'dark' && styles.dark} ${
+            className={`${theme?.type === 'dark' ? styles.dark : ""} ${
                 isOpen && disableStyles.disabled
             } ${styles.searchBar}`}
         >
             <input
-                className={`${theme.type === 'dark' && styles.dark} ${
+                className={`${theme?.type === 'dark' ? styles.dark : ""} ${
                     isOpen && disableStyles.disabled
                 } ${styles.searchInput}`}
                 placeholder="Search books"

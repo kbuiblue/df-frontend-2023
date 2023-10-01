@@ -23,7 +23,7 @@ const Nav: React.FC = () => {
         >
             <button
                 className={`${activePageNumber === 1 && styles.disabled} ${
-                    theme.type === 'dark' && styles.dark
+                    theme.type === 'dark' ? styles.dark : ""
                 } ${styles.paginationButton}`}
                 id="prev-button"
                 aria-label="Previous page"
@@ -48,7 +48,7 @@ const Nav: React.FC = () => {
                         <button
                             className={`${
                                 activePageNumber === pageNumber && styles.active
-                            } ${theme.type === 'dark' && styles.dark} ${
+                            } ${theme.type === 'dark' ? styles.dark : ""} ${
                                 styles.paginationButton
                             }`}
                             key={index}
@@ -63,7 +63,7 @@ const Nav: React.FC = () => {
             <button
                 className={`${
                     activePageNumber === pages.length && styles.disabled
-                } ${theme.type === 'dark' && styles.dark} ${
+                } ${theme.type === 'dark' ? styles.dark : ""} ${
                     styles.paginationButton
                 }`}
                 id="next-button"

@@ -48,28 +48,28 @@ const Table: React.FC = () => {
                     <tr>
                         <th
                             className={`${
-                                theme.type === "dark" && styles.dark
+                                theme.type === "dark" ? styles.dark : ""
                             } ${styles.tableHeading}`}
                         >
                             Name
                         </th>
                         <th
                             className={`${
-                                theme.type === "dark" && styles.dark
+                                theme.type === "dark" ? styles.dark : ""
                             } ${styles.tableHeading}`}
                         >
                             Author
                         </th>
                         <th
                             className={`${
-                                theme.type === "dark" && styles.dark
+                                theme.type === "dark" ? styles.dark : ""
                             } ${styles.tableHeading}`}
                         >
                             Topic
                         </th>
                         <th
                             className={`${
-                                theme.type === "dark" && styles.dark
+                                theme.type === "dark" ? styles.dark : ""
                             } ${styles.tableHeading}`}
                         >
                             Action

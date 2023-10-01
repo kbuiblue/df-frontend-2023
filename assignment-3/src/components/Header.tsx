@@ -12,12 +12,12 @@ const Header: React.FC<AppProps> = ({ isOpen, theme }) =>  {
             className={`${isOpen && disableStyles.disabled} ${styles.header}`}
         >
             <h1
-                className={`${theme?.type === 'dark' && styles.dark} ${
+                className={`${theme?.type === 'dark' ? styles.dark : ""} ${
                     styles.heading
                 }`}
             >
                 <span
-                    className={`${theme?.type === 'dark' && styles.dark} ${
+                    className={`${theme?.type === 'dark' ? styles.dark : ""} ${
                         styles.highlight
                     }`}
                 >
