@@ -4,7 +4,7 @@ export interface AppProps {
 }
 
 export interface Book {
-    id: string
+    id?: string
     name: string
     author: string
     topic: string
@@ -21,7 +21,9 @@ export interface BooksInterface {
     removeBook: (_deletedBook: Book) => void
     setPages: (_pages: Book[][]) => void
     setCurrentPage: (_currentPage: Book[]) => void
-    setActivePageNumber: (_activePageNumber: number) => void
+    setActivePageNumber: (
+        _activePageNumber: number | ((prevActivePage: number) => number),
+    ) => void
     getPagination: (_booksArray: Book[]) => Book[][]
 }
 
@@ -39,7 +41,7 @@ export interface Theme {
     type: 'light' | 'dark'
 }
 
-export type ChangeEventHandler<T> = (_event: React.ChangeEvent<T>) => void;
+export type ChangeEventHandler<T> = (_event: React.ChangeEvent<T>) => void
 
 export interface ThemeInterface {
     theme: Theme

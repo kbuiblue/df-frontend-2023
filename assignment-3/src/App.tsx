@@ -1,4 +1,4 @@
-import styles from '../styles/App.module.css'
+import styles from './styles/App.module.css'
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
 import Table from './components/Table'
