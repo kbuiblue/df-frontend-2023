@@ -39,7 +39,9 @@ export interface Theme {
     type: 'light' | 'dark'
 }
 
+export type ChangeEventHandler<T> = (_event: React.ChangeEvent<T>) => void;
+
 export interface ThemeInterface {
     theme: Theme
-    handleSettingTheme: (_event: Event) => void
+    handleSettingTheme: ChangeEventHandler<HTMLInputElement>
 }

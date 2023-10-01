@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useState, useMemo } from 'react'
+import { ReactNode, useCallback, useState, useMemo, ChangeEventHandler } from 'react'
 import { ThemeContext } from './context'
 import { Theme } from '../types'
 
@@ -13,7 +13,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     )
     const [theme, setTheme] = useState(defaultTheme)
 
-    const handleSettingTheme = useCallback((event) => {
+    const handleSettingTheme: ChangeEventHandler<HTMLInputElement> = useCallback((event) => {
         const isDark: boolean = event.target.checked
 
         if (isDark) {
