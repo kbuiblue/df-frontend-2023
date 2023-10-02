@@ -1,14 +1,14 @@
 import styles from './styles/App.module.css'
-import Header from './components/Header'
-import SearchBar from './components/SearchBar'
-import Table from './components/Table'
-import Nav from './components/Nav'
-import Footer from './components/Footer'
-import Modal from './components/Modal'
+import Header from './Header'
+import SearchBar from './SearchBar'
+import Table from './Table'
+import Nav from './Nav'
+import Footer from './Footer'
+import Modal from './Modal'
 
-import { BooksProvider } from './components/context/BooksProvider'
-import { ModalProvider } from './components/context/ModalProvider'
-import { AppProps } from './components/types'
+import { BooksProvider } from './context/BooksProvider'
+import { ModalProvider } from './context/ModalProvider'
+import { AppProps } from './types'
 
 const App: React.FC<AppProps> = ({ theme }) => {
     return (
