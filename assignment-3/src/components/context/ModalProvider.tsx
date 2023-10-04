@@ -7,8 +7,8 @@ interface ModalProviderProps {
 
 export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false)
-    const [currentBookIndex, setCurrentBookIndex] = useState(null)
-    const [modalType, setModalType] = useState(null)
+    const [currentBookIndex, setCurrentBookIndex] = useState<null | number>(null)
+    const [modalType, setModalType] = useState<null | string>(null)
 
     const handleOpen = useCallback(() => {
         setIsOpen(true)

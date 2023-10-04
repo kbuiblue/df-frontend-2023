@@ -12,15 +12,18 @@ const Modal: React.FC = () => {
     const { theme } = useContext(ThemeContext)
 
     const [userInput, setUserInput] = useState({
-        name: '',
-        author: '',
-        topic: '',
+        name: "",
+        author: "",
+        topic: "",
     })
 
     const topicsSet = new Set(books.map((book) => book.topic))
     const topicsArray = Array.from(topicsSet)
-    const deletedBook =
-        currentPage && currentBookIndex && currentPage[currentBookIndex]
+    let deletedBook
+
+    if (currentPage && currentBookIndex) {
+        deletedBook = currentPage[currentBookIndex]
+    }
 
     const handleNameInput = (value) => {
         setUserInput((prevInput) => ({
@@ -69,9 +72,9 @@ const Modal: React.FC = () => {
 
     useEffect(() => {
         setUserInput({
-            name: '',
-            author: '',
-            topic: '',
+            name: "",
+            author: "",
+            topic: "",
         })
     }, [books])
 
@@ -117,7 +120,7 @@ const Modal: React.FC = () => {
                         <h3>
                             Do you want to delete <br />
                             <strong className={styles.bookTitle}>
-                                {deletedBook && deletedBook.name}?
+                                {deletedBook ? deletedBook.name : ""}?
                             </strong>
                         </h3>
                         <div
@@ -218,7 +221,7 @@ const Modal: React.FC = () => {
                                     } ${styles.formInput}`}
                                     id="topic"
                                     name="topic"
-                                    defaultValue={userInput.topic || ''}
+                                    defaultValue={userInput.topic || ""}
                                     onChange={(event) =>
                                         handleSelectInput(event.target.value)
                                     }
@@ -257,17 +260,15 @@ const Modal: React.FC = () => {
                 return <div>ERROR</div>
         }
     }
-    return (
-        isOpen ? (
-            <div
-                className={`${theme.type === 'dark' ? styles.dark : ""} ${
-                    styles.modal
-                }`}
-            >
-                {renderModal(modalType)}
-            </div>
-        ) : null
-    )
+    return isOpen ? (
+        <div
+            className={`${theme.type === 'dark' ? styles.dark : ""} ${
+                styles.modal
+            }`}
+        >
+            {renderModal(modalType)}
+        </div>
+    ) : null
 }
 
-export default Modal;
+export default Modal

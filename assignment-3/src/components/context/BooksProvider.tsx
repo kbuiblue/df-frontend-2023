@@ -85,7 +85,7 @@ export const BooksProvider: React.FC<BooksProviderProps> = ({ children }) => {
     const removeBook = useCallback(
         (deletedBook : Book) => {
             const remainingBooks = books.filter(
-                (book) => book.id !== deletedBook.id,
+                (book) => book?.id !== deletedBook?.id,
             )
             setBooks([...remainingBooks])
 

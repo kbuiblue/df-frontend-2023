@@ -25,9 +25,9 @@ const Table: React.FC = () => {
         }
     }, [activePageNumber, currentPage, pages, setActivePageNumber, setCurrentPage]);
 
-    if (pages.length === 0) {
-        return <div>No books found</div>;
-    }
+    // if (pages.length === 0) {
+    //     return <div>No books found</div>;
+    // }
 
     return (
         <section

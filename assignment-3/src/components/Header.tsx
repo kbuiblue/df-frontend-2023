@@ -1,11 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styles from '../styles/Header.module.css'
 import disableStyles from '../styles/DisableStyles.module.css'
 import Profile from './Profile'
 import ThemeToggle from './ThemeToggle'
 import { AppProps } from './types'
+import { ThemeContext, ModalContext } from './context/context'
 
-const Header: React.FC<AppProps> = ({ isOpen, theme }) =>  {
+const Header: React.FC<AppProps> = () =>  {
+    const { theme } = useContext(ThemeContext);
+    const {isOpen} = useContext(ModalContext)
 
     return (
         <header

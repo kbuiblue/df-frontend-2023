@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+
 import styles from '../styles/App.module.css'
 import Header from './Header'
 import SearchBar from './SearchBar'
@@ -8,9 +10,12 @@ import Modal from './Modal'
 
 import { BooksProvider } from './context/BooksProvider'
 import { ModalProvider } from './context/ModalProvider'
+import { ThemeContext } from './context/context'
 import { AppProps } from './types'
 
-const App: React.FC<AppProps> = ({ theme }) => {
+const App: React.FC<AppProps> = () => {
+    const { theme } = useContext(ThemeContext);
+
     return (
         <div
             className={
@@ -21,7 +26,7 @@ const App: React.FC<AppProps> = ({ theme }) => {
         >
             <section className={styles.App}>
                 <ModalProvider>
-                    <Header theme={theme} />
+                    <Header />
                     <BooksProvider>
                         <SearchBar />
                         <Table />

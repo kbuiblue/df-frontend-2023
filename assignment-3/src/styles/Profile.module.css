@@ -12,10 +12,10 @@
     max-width: 2.5em;
 }
 
-.userContainer.dark {
+.userName.dark {
     color: var(--hightlight);
 }
 
-.userContainer.dark:hover {
+.userName.dark:hover {
     color: #cd485d;
 }
